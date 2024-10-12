@@ -1,0 +1,12 @@
+.
+├── app
+│   ├── favicon.ico
+│   ├── fonts
+│   │   ├── GeistMonoVF.woff
+│   │   └── GeistVF.woff
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+└── structure.txt
+
+3 directories, 7 files
