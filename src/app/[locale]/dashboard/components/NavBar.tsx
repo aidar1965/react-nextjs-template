@@ -1,7 +1,10 @@
 "use client";
 
+import {useTranslations} from 'next-intl';
 import { Button } from "@/components/ui/button";
 import {ModeToggle} from "@/components/ui/ThemeToggler"; 
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+
 
 // Import ThemeGoggler
 
@@ -12,7 +15,7 @@ interface NavBarProps {
 
 export default function NavBar({ userName, onSignOut }: NavBarProps) {
 
-
+  const t = useTranslations('Dashboard');
   
   return (
     <nav className="bg-white shadow-md dark:bg-gray-800">
@@ -24,13 +27,14 @@ export default function NavBar({ userName, onSignOut }: NavBarProps) {
             </div>
           </div>
           <div className="flex items-center">
+          <LanguageSwitcher />
             <div className="mr-4">
             <ModeToggle /> {/* Add ThemeGoggler here */}
             </div>
            
             {userName && (
               <>
-                <span className="text-gray-600 mr-4 dark:text-white">Welcome, {userName}</span>
+                <span className="text-gray-600 mr-4 dark:text-white">{t('welcome')}, {userName}</span>
                 <Button onClick={onSignOut} variant="outline">Sign Out</Button>
               </>
             )}

@@ -1,13 +1,13 @@
 'use client';
 
-import { useDashboard } from '../dashboard/useDashboard';
-import NavBar from '../dashboard/components/NavBar';
-import PostsTable from '../dashboard/components/PostsTable';
-import Pagination from '../dashboard/components/Pagination';
+import { useDashboard } from './useDashboard';
+import NavBar from './components/NavBar';
+import PostsTable from './components/PostsTable';
+import Pagination from './components/Pagination';
 import { Loader2 } from "lucide-react";
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import  useLocaleRouter   from '../../useLocaleRouter';
 
 export default function DashboardContent() {
   const { 
@@ -21,13 +21,13 @@ export default function DashboardContent() {
     handlePageChange 
   } = useDashboard();
 
-  const router = useRouter();
+  const localeRouter = useLocaleRouter();
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      router.push('/login');
+      localeRouter.push('/login');
     }
-  }, [status, router]);
+  }, [status, localeRouter]);
 
   if (status === "loading") {
     return (

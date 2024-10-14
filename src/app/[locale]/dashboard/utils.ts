@@ -1,5 +1,5 @@
 import { GetPostRequest } from "@/api/interfaces/requests/getPostsRequest";
-import { Post } from "../dashboard/types";
+import { Post } from "./types";
 import { executeRequest } from "@/api/utils/axios";
 
 export const fetchPosts = async (page: number): Promise<Post[]> => {

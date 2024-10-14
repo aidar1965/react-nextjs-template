@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,6 +20,9 @@ import * as z from "zod";
 import Link from "next/link";
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import  useLocaleRouter   from '../../../useLocaleRouter';
+
+
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -27,7 +30,8 @@ const formSchema = z.object({
 });
 
 const LoginScreenPage = () => {
-  const router = useRouter();
+  const localeRouter = useLocaleRouter();
+
   const [authError, setAuthError] = useState("");
   const searchParams = useSearchParams();
   const error = searchParams.get('error');
@@ -57,7 +61,7 @@ const LoginScreenPage = () => {
     },
     onSuccess: (result) => {
       if (result?.ok) {
-        router.push("/dashboard");
+        localeRouter.push("/dashboard");
       } else {
         setAuthError("Login was not successful. Please try again.");
       }

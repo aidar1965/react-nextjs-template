@@ -1,4 +1,6 @@
 // next.config.mjs
+import createNextIntlPlugin from "next-intl/plugin";
+const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -6,4 +8,4 @@ const nextConfig = {
   swcMinify: true, // Включает SWC для минификации кода
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

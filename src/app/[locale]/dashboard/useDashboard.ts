@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { useSession, signOut } from "next-auth/react";
 import { fetchPosts } from "./utils";
 import { Post } from "./types";
+import useLocaleRouter from "../../useLocaleRouter";
 
 export function useDashboard() {
-  const router = useRouter();
+  const localeRouter = useLocaleRouter();
   const { data: session, status } = useSession();
   const [page, setPage] = useState(1);
 
@@ -24,7 +24,7 @@ export function useDashboard() {
 
   const handleSignOut = async () => {
     await signOut({ redirect: false });
-    router.push("/login");
+    localeRouter.push("/login");
   };
 
   const handlePageChange = (newPage: number) => {

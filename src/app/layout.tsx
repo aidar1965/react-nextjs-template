@@ -1,33 +1,16 @@
-"use client"
-import React from "react";
-import "./globals.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { SessionProvider } from "next-auth/react";
+// layout.tsx
+import RootProvider from './RootProvider';
 
-const queryClient = new QueryClient();
-
-
-
-export default function RootLayout({
+export default function Layout({
   children,
+  params
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
+  params: { locale: string };
 }) {
   return (
-    <html lang="en">
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <QueryClientProvider client={queryClient}>
-           <SessionProvider>
-            {children}
-           </SessionProvider>
-          </QueryClientProvider>
-        </ThemeProvider>
-        <Toaster />
-      </body>
-    </html>
-  )
+    <RootProvider params={params}>
+      {children}
+    </RootProvider>
+  );
 }
-
