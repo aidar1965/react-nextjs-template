@@ -7,6 +7,7 @@ const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true,
 });
 
 export async function executeRequest<T>(request: IApiRequest): Promise<T> {
@@ -15,6 +16,10 @@ export async function executeRequest<T>(request: IApiRequest): Promise<T> {
     baseURL: request.baseUrl,
     method: request.methodType,
   };
+
+  const cookies = request.cookies; // req.cookies доступен, если вы используете библиотеку для парсинга куков, например, cookie-parser
+
+  console.log("Куки на сервере:", cookies); // Выводим куки в консоль сервера
 
   if (request.body) {
     config.data = request.body;
