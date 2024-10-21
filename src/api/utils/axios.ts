@@ -17,10 +17,7 @@ export async function executeRequest<T>(request: IApiRequest): Promise<T> {
     method: request.methodType,
   };
 
-  const cookies = request.cookies; // req.cookies доступен, если вы используете библиотеку для парсинга куков, например, cookie-parser
-
-  console.log("Куки на сервере:", cookies); // Выводим куки в консоль сервера
-
+  
   if (request.body) {
     config.data = request.body;
   }

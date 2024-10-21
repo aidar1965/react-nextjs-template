@@ -7,8 +7,8 @@ interface GetPastsParams {
 
 export class GetPostRequest implements IApiRequest {
   methodType: AvailableApiMethods = AvailableApiMethods.GET;
-  baseUrl: string = "https://jsonplaceholder.typicode.com";
-  url: string = "/posts";
+  baseUrl: string = "/api/";
+  url: string = "posts";
   queryParameters:
     | Record<string, string | number | boolean | undefined>
     | undefined;

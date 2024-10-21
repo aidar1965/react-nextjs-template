@@ -28,7 +28,6 @@ export async function validateToken(
     return "valid"; // Токен действителен
   } catch (error) {
     if ((error as Error).name === "TokenExpiredError") {
-      console.log("Токен истек."); // Логирование истекшего токена
       return "expired"; // Токен истек
     }
     console.log("Ошибка проверки токена: " + error); // Логирование других ошибок

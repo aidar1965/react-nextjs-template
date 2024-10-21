@@ -1,15 +1,24 @@
-import { GetPostRequest } from "@/api/interfaces/requests/getPostsRequest";
 import { Post } from "./types";
-import { executeRequest } from "@/api/utils/axios";
+import axios from "axios";
+
+const axiosInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  timeout: 10000,
+  headers: {
+    "Content-Type": "application/json",
+  },
+  withCredentials: true,
+});
 
 export const fetchPosts = async (page: number): Promise<Post[]> => {
-  const postsRequest = new GetPostRequest({ page: page, limit: 10 });
   try {
-    const response = await executeRequest<Post[]>(postsRequest);
+    const response = await axiosInstance.get(`/api/posts/?_page=${page}`, {
+      baseURL: "",
+    });
     console.log(response);
-    return response;
+    return response.data;
   } catch (error) {
-    console.error("Login error:", error);
-    throw new Error("Failed to login");
+    console.error("Posts fetching error:", error);
+    throw new Error("Failed to fetch posts");
   }
 };
