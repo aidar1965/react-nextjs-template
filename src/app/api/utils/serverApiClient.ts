@@ -7,7 +7,7 @@ import {
   generateAccessToken,
   generateRefreshToken,
   validateToken,
-} from "@/utils/tokenUtils";
+} from "../utils/tokenUtils";
 
 class ServerApiClient {
   private axiosInstance: AxiosInstance;

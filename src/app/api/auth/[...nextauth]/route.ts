@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { loginUser } from "../../../../api/auth/api-requests/login_user";
 import { AuthOptions } from "next-auth";
 
-import { jwtCallback, sessionCallback } from "@/utils/authCallback";
+import { jwtCallback, sessionCallback } from "../../utils/authCallback";
 
 // Опции для NextAuth
 export const authOptions: AuthOptions = {
@@ -29,9 +29,12 @@ export const authOptions: AuthOptions = {
         // Если авторизация успешна, возвращаем пользователя
         if (loginResponse) {
           return {
-            id: loginResponse.user.id,
-            name: loginResponse.user.name,
-            email: loginResponse.user.email,
+            id:
+              typeof loginResponse.id == "string"
+                ? loginResponse.id
+                : loginResponse.id.toString(),
+            name: loginResponse.name,
+            email: loginResponse.email,
           };
         }
 

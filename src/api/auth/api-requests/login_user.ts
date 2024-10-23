@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { LoginRequest } from "@/api/interfaces/requests/loginRequest";
 import LoginResponse from "@/api/interfaces/responses/LoginResponse";
-import axiosInstance, { executeRequest } from "@/api/utils/axios";
 
 export async function loginUser(
   email: string,
@@ -19,18 +18,7 @@ export async function loginUser(
       },
     };
 
-    if (typeof response.user.id === "number") {
-      return new LoginResponse(
-        String(response.user.id),
-        response.user.name,
-        response.user.email
-      );
-    }
-    return new LoginResponse(
-      response.user.id,
-      response.user.name,
-      response.user.email
-    );
+    return response.user;
   } catch (error) {
     console.error("Login error:", error);
     throw new Error("Failed to login");

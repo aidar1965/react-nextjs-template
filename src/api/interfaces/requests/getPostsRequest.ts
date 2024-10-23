@@ -1,22 +1,22 @@
-import { AvailableApiMethods, IApiRequest } from "../IApiRequest";
+// src/api/requests/RequestGetPosts.ts
+import { BaseRequest } from "../../core/BaseRequest";
+import { HttpMethod } from "../../core/types";
+import { PostListItem } from "../responses/PostListItem";
+import Post from "../../../app/models/Post";
 
-interface GetPastsParams {
-  page?: number;
-  limit?: number;
-}
+export class RequestGetPosts extends BaseRequest<PostListItem, Post[]> {
+  constructor(public page: number = 1, public limit: number = 10) {
+    super({
+      method: HttpMethod.GET,
+      url: "/posts",
+      params: {
+        page,
+        limit,
+      },
+    });
+  }
 
-export class GetPostRequest implements IApiRequest {
-  methodType: AvailableApiMethods = AvailableApiMethods.GET;
-  baseUrl: string = "/api/";
-  url: string = "posts";
-  queryParameters:
-    | Record<string, string | number | boolean | undefined>
-    | undefined;
-
-  constructor(params: GetPastsParams) {
-    this.queryParameters = {
-      _page: params.page ?? 1,
-      _limit: params.limit ?? 10,
-    };
+  static fromResponse(response: PostListItem[]): Post[] {
+    return response.map((item) => new Post(item.id, item.title, item.body));
   }
 }

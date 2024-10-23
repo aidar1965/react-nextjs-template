@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Post } from '../types';
+import  Post  from '../../../models/Post';
 import { Loader2 } from "lucide-react";
 
 interface PostsTableProps {
@@ -35,7 +35,7 @@ export default function PostsTable({ posts, isLoading, error }: PostsTableProps)
           <TableRow key={post.id}>
             <TableCell>{post.id}</TableCell>
             <TableCell>{post.title}</TableCell>
-            <TableCell>{post.body.substring(0, 50)}...</TableCell>
+            <TableCell>{post.content.substring(0, 50)}...</TableCell>
           </TableRow>
         ))}
       </TableBody>

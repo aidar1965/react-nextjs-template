@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSession, signOut } from "next-auth/react";
-import { fetchPosts } from "./utils";
-import { Post } from "./types";
 import useLocaleRouter from "../../useLocaleRouter";
+import { fetchPosts } from "../../../api/posts/fetchPosts";
+import Post from "@/app/models/Post";
 
 export function useDashboard() {
   const localeRouter = useLocaleRouter();

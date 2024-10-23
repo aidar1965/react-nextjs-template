@@ -1,7 +1,10 @@
 // app/api/auth/refresh-token/route.js
 
 import { NextResponse } from "next/server";
-import { validateToken, generateAccessToken } from "../../../utils/tokenUtils"; // Подключаем свои функции
+import {
+  validateToken,
+  generateAccessToken,
+} from "../../../app/api/utils/tokenUtils"; // Подключаем свои функции
 
 export async function POST(request) {
   try {

@@ -1,15 +1,5 @@
-export default class LoginResponse {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-  };
-
-  constructor(id: string, name: string, email: string) {
-    this.user = {
-      id,
-      name,
-      email,
-    };
-  }
+export default interface LoginResponse {
+  id: string | number;
+  name: string;
+  email: string;
 }
