@@ -4,8 +4,8 @@ import { useSession } from "next-auth/react";
 
 export type TokenValidationResult = "valid" | "expired" | "error";
 
-const ACCESS_TOKEN_EXPIRY = 15; // 15 minutes
-const REFRESH_TOKEN_EXPIRY = 7 * 24 * 60 * 60; // 7 days
+const ACCESS_TOKEN_EXPIRY = 15 * 60; // 15 minutes
+const REFRESH_TOKEN_EXPIRY = 30 * 24 * 60 * 60; // 30 days
 
 export function generateAccessToken(userId: string): string {
   return sign({ userId, type: "access" }, process.env.JWT_SECRET!, {
